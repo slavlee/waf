@@ -5,11 +5,17 @@
     "license": "GPL-2.0-or-later",
     "require": {
         "php": "^8.2",
-        "typo3/cms-backend": "^12.4",
         "typo3/cms-core": "^12.4"
     },
+	"config": {
+        "allow-plugins": {
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        }
+	},
     "require-dev": {
-        "typo3/coding-standards": "^0.7.1"
+        "typo3/coding-standards": "^0.7.1",
+		"typo3/testing-framework": "^8"
     },
     "authors": [
         {
@@ -39,9 +45,14 @@
             "Slavlee\\Waf\\": "Classes/"
         }
     },
+	"autoload-dev": {
+		"psr-4": {
+		  "Slavlee\\Waf\\Tests\\": "Tests"
+		}
+	},
     "extra": {
         "typo3/cms": {
-            "extension-key": "waf"
+            "extension-key": "waf",
         }
     }
 }

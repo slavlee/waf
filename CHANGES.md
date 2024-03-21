@@ -1,3 +1,6 @@
+### Version 0.1.1
+- [FEATURE] Add a UnitTest: testUnionSelectAtBeginningString
+
 ### Version 0.1.0
 - [FEATURE] Add Basic SQLInjection and PHP Code Execution Scanner for the frontend via middleware
 
