@@ -52,7 +52,7 @@
 	},
     "extra": {
         "typo3/cms": {
-            "extension-key": "waf",
+            "extension-key": "waf"
         }
     }
 }

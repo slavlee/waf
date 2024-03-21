@@ -1,3 +1,6 @@
+### Version 0.1.2
+- [BUGFIX] Error in composer.json
+
 ### Version 0.1.1
 - [FEATURE] Add a UnitTest: testUnionSelectAtBeginningString
 
