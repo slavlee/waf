@@ -1,0 +1,23 @@
+# customcategory=Frontend=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_cat_frontend
+# customcategory=SqlInjectionScanner=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_cat_sqlInjectionScanner
+# customcategory=CodeExecutionScanner=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_cat_codeExecutionScanner
+
+firewall {
+    frontend {
+        # cat=Frontend; type=string; label=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_firewall_allowed_methods
+        allowedMethods = GET, POST
+
+        # cat=Frontend; type=string; label=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_firewall_disallowed_first_url_segment
+        disallowedFirstUrlSegments = wp-admin, administrator, admin
+    }
+
+    sqlInjectionScanner {
+        # cat=SqlInjectionScanner; type=int+; label=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_firewall_requestScanner_depth
+        depth = 100
+    }
+
+    codeExecutionScanner {
+        # cat=CodeExecutionScanner; type=int+; label=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_firewall_requestScanner_depth
+        depth = 100
+    }
+}

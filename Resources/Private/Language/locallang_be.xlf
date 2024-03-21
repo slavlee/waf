@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="EXT:waf/Resources/Private/Language/locallang_be.xlf" date="2024-03-21T12:06:51Z" product-name="waf">
+        <header/>
+        <body>
+			<trans-unit id="extconf_cat_frontend" resname="extconf_cat_frontend">
+                <source>Frontend</source>
+            </trans-unit>
+			<trans-unit id="extconf_cat_sqlInjectionScanner" resname="extconf_cat_sqlInjectionScanner">
+                <source>SQL Injection Scanner</source>
+            </trans-unit>
+			<trans-unit id="extconf_cat_codeExecutionScanner" resname="extconf_cat_codeExecutionScanner">
+                <source>Code Execution Scanner</source>
+            </trans-unit>
+
+            <trans-unit id="extconf_firewall_allowed_methods" resname="extconf_firewall_allowed_methods">
+                <source>Allowed methods</source>
+            </trans-unit>
+			<trans-unit id="extconf_firewall_disallowed_first_url_segment" resname="extconf_firewall_disallowed_first_url_segment">
+                <source>First url path does not have the following values</source>
+            </trans-unit>
+			<trans-unit id="extconf_firewall_requestScanner_depth" resname="extconf_firewall_requestScanner_depth">
+                <source>Maximum amount of request parameter to parse</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
