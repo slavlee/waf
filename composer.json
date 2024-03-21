@@ -1,0 +1,47 @@
+{
+    "name": "slavlee/waf",
+    "type": "typo3-cms-extension",
+    "description": "Web Application Firewall for TYPO3 CMS.",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": "^8.2",
+        "typo3/cms-backend": "^12.4",
+        "typo3/cms-core": "^12.4"
+    },
+    "require-dev": {
+        "typo3/coding-standards": "^0.7.1"
+    },
+    "authors": [
+        {
+            "name": "Kevin Chileong Lee",
+            "role": "Developer",
+            "email": "support@slavlee.de",
+            "homepage": "https://slavlee.de/"
+        }
+    ],
+    "keywords": [
+        "typo3",
+        "waf",
+        "security",
+        "firewall"
+    ],
+    "support": {
+        "issues": "https://github.com/slavlee/waf"
+    },
+    "funding": [
+        {
+            "type": "other",
+            "url:": "https://www.paypal.com/paypalme/slavlee"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Slavlee\\Waf\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "waf"
+        }
+    }
+}
