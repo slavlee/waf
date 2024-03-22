@@ -7,12 +7,6 @@
         "php": "^8.2",
         "typo3/cms-core": "^12.4"
     },
-	"config": {
-        "allow-plugins": {
-            "typo3/class-alias-loader": true,
-            "typo3/cms-composer-installers": true
-        }
-	},
     "require-dev": {
         "typo3/coding-standards": "^0.7.1",
 		"typo3/testing-framework": "^8"

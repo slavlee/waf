@@ -1,3 +1,8 @@
+### Version 0.1.3
+- [FEATURE] Add little Test Documentation
+- [FEATURE] Add denyUnionSelectAtMiddleString Unit Test
+- [NOTICE] Renamed Unit Test Function names
+
 ### Version 0.1.2
 - [BUGFIX] Error in composer.json
 

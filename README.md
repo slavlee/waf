@@ -17,10 +17,13 @@ After installing the extenions you need to do the following steps:
 1. Admin Tools -> Maintenance -> Flush Injection Cache
 2. Admin Tools -> Settings -> Configure extensions -> waf. Do your changes and press save.
 
-## 3 Changelog
+## 3 Documentations
+[Testing Documentation](Documentation/Testing/Index.md)
+
+## 4 Changelog
 The changelogs can be found inside the CHANGES.md file.
 
-## 4 Final words
+## 5 Final words
 I give my best to make TYPO3 websites as secure as possible. Unfortunately I can't promise or guarantee that your site will be 100% secure. You are still responsible for your website.
 Please be aware that this WAF my also block valid requests, there is on option to exlude arguments or urls at the moment.
 
