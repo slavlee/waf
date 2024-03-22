@@ -17,7 +17,7 @@ class SqlInjectionUtility
 {
     // This need to be unique words related directly to SQL queries
     // which are almost guaranteed to be not used in normal text
-    const SQL_WORDS = ['database()', 'table_schema', 'group_concat'];
+    const SQL_WORDS = ['database()', 'table_schema', 'group_concat', 'information_schema'];
 
     /**
      * Detect SQL injection on a string
@@ -29,12 +29,12 @@ class SqlInjectionUtility
         $stringToScan = \strtolower(\trim($stringToScan));
 
         // block union select
-        if (\preg_match('/union select/', $stringToScan)) {
+        if (\preg_match('/union select/', $stringToScan) !== false) {
             return false;
         }
 
         // block something like OR 1=1
-        if (\preg_match('/or\s[a-z0-9]{1,1}=[a-z0-9]{1,1}/', $stringToScan)) {
+        if (\preg_match('/(or|and)\s["\']?[a-z0-9]{1,1}["\']?=["\']?[a-z0-9]{1,1}["\']?/', $stringToScan) !== false) {
             return false;
         }
 

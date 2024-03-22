@@ -1,7 +1,8 @@
 ### Version 0.1.3
 - [FEATURE] Add little Test Documentation
-- [FEATURE] Add denyUnionSelectAtMiddleString Unit Test
+- [FEATURE] Add a complete set for CodeExecutionUtility and SqlInjectionUtility unit tests based on 0.1.0 features
 - [NOTICE] Renamed Unit Test Function names
+- [BUGFIX] IF condition for preg_match needs to compare against false
 
 ### Version 0.1.2
 - [BUGFIX] Error in composer.json
