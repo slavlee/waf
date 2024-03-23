@@ -1,4 +1,5 @@
 <?php
+
 namespace Slavlee\Waf\Tests\Unit\Utility;
 
 /**
@@ -10,11 +11,11 @@ namespace Slavlee\Waf\Tests\Unit\Utility;
  * (c) 2024 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
 
- use Slavlee\Waf\Utility\XssUtility;
- use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
+use Slavlee\Waf\Utility\XssUtility;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
- class XssUtilityTest extends UnitTestCase
- {
+class XssUtilityTest extends UnitTestCase
+{
     /**
      * @test
      * Test if Utility can detect "base64_encode" string
@@ -44,4 +45,4 @@ namespace Slavlee\Waf\Tests\Unit\Utility;
             XssUtility::scanString($stringToScan)
         );
     }
- }
+}

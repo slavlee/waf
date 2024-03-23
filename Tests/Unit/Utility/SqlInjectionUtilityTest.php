@@ -1,4 +1,5 @@
 <?php
+
 namespace Slavlee\Waf\Tests\Unit\Utility;
 
 /**
@@ -10,11 +11,11 @@ namespace Slavlee\Waf\Tests\Unit\Utility;
  * (c) 2024 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
 
- use Slavlee\Waf\Utility\SqlInjectionUtility;
- use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
+use Slavlee\Waf\Utility\SqlInjectionUtility;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
- class SqlInjectionUtilityTest extends UnitTestCase
- {
+class SqlInjectionUtilityTest extends UnitTestCase
+{
     /**
      * @test
      * Test if Utility can detect "union select" string
@@ -149,4 +150,4 @@ namespace Slavlee\Waf\Tests\Unit\Utility;
             SqlInjectionUtility::scanString($stringToScan)
         );
     }
- }
+}
