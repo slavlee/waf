@@ -1,5 +1,5 @@
 ### Version 0.2.1
-- [WIP] Create GitHub Action to execute UnitTests
+- [FEATURE] Create GitHub Action to execute UnitTests
 - [NOTICE] Use php-cs-fixer as formatter and run it on all php files
 
 ### Version 0.2.0
