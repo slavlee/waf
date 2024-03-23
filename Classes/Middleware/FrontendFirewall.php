@@ -25,9 +25,7 @@ class FrontendFirewall implements MiddlewareInterface
     public function __construct(
         private ResponseFactoryInterface $responseFactory,
         private readonly \Slavlee\Waf\Domain\Service\FrontendFirewall $firewall
-    ) {
-
-    }
+    ) {}
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {

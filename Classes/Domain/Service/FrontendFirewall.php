@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Slavlee\Waf\Domain\Service;
 
-use Slavlee\Waf\Scanner\XssScanner;
-use TYPO3\CMS\Core\Http\ServerRequest;
-use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Slavlee\Waf\Exception\RequestNotAllowedException;
-use Slavlee\Waf\Scanner\SqlInjectionScanner;
 use Slavlee\Waf\Scanner\CodeExecutionScanner;
+use Slavlee\Waf\Scanner\SqlInjectionScanner;
+use Slavlee\Waf\Scanner\XssScanner;
+use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This file is part of the "waf" Extension for TYPO3 CMS.
@@ -52,7 +52,6 @@ class FrontendFirewall
 
     /**
      * Handle a Request
-     * @return void
      */
     public function handle(ServerRequest $request): void
     {

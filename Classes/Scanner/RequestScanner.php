@@ -28,7 +28,6 @@ abstract class RequestScanner
     /**
      * Init the scanner with the extension configuration
      * @param array $extConf
-     * @return void
      */
     public function init(array $extConf): void
     {
