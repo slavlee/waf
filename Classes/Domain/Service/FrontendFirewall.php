@@ -49,7 +49,6 @@ class FrontendFirewall
         }
     }
 
-
     /**
      * Handle a Request
      */
@@ -57,7 +56,7 @@ class FrontendFirewall
     {
         $this->request = $request;
 
-        if (empty ($this->extConf)) {
+        if (empty($this->extConf)) {
             return;
         }
 

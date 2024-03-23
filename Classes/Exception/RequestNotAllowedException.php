@@ -14,6 +14,4 @@ use TYPO3\CMS\Core\Exception;
  *
  * (c) 2024 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
-class RequestNotAllowedException extends Exception
-{
-}
+class RequestNotAllowedException extends Exception {}
