@@ -59,14 +59,16 @@ class FrontendFirewall
     {
         $this->request = $request;
 
-        if (empty($this->extConf)) {
+        if (empty ($this->extConf)) {
             return;
         }
 
-        if (!$this->scanMethod() || !$this->scanUrlSegments()
+        if (
+            !$this->scanMethod() || !$this->scanUrlSegments()
             || !$this->sqlInjectionScanner->scanRequest()
             || !$this->codeExecutionScanner->scanRequest()
-            || !$this->xssScanner->scanRequest()) {
+            || !$this->xssScanner->scanRequest()
+        ) {
             throw new RequestNotAllowedException('Request not allowed', time());
         }
     }
@@ -89,8 +91,8 @@ class FrontendFirewall
         $path = $this->request->getUri()->getPath();
         $invalidSegments = GeneralUtility::trimExplode(',', $this->extConf['disallowedFirstUrlSegments']);
 
-        foreach($invalidSegments as $invalidSegment) {
-            if(\preg_match('/^\/' . $invalidSegment . '(\/.*)?$/', $path)) {
+        foreach ($invalidSegments as $invalidSegment) {
+            if (\preg_match('/^\/' . $invalidSegment . '(\/.*)?$/', $path)) {
                 return false;
             }
         }

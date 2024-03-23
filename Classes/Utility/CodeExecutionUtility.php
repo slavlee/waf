@@ -29,8 +29,8 @@ class CodeExecutionUtility
         $stringToScan = \strtolower(\trim($stringToScan));
 
         // find php commands which we dont allow
-        foreach(self::PHP_COMMANDS as $command) {
-            if(\preg_match('/' . $command . '\s?\(/', $stringToScan)) {
+        foreach (self::PHP_COMMANDS as $command) {
+            if (\preg_match('/' . $command . '\s?\(/', $stringToScan)) {
                 return false;
             }
         }

@@ -28,10 +28,10 @@ class SqlInjectionScanner extends RequestScanner
             return true;
         }
 
-        foreach($gp as $parameter) {
+        foreach ($gp as $parameter) {
             if (\is_array($parameter)) {
                 $this->scanGP($parameter, $loop - 1);
-            } elseif(!SqlInjectionUtility::scanString((string)$parameter)) {
+            } elseif (!SqlInjectionUtility::scanString((string) $parameter)) {
                 return false;
             }
         }

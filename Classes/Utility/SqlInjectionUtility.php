@@ -38,8 +38,8 @@ class SqlInjectionUtility
             return false;
         }
 
-        foreach(self::SQL_WORDS as $word) {
-            if(\strpos($stringToScan, $word) !== false) {
+        foreach (self::SQL_WORDS as $word) {
+            if (\strpos($stringToScan, $word) !== false) {
                 return false;
             }
         }

@@ -28,10 +28,10 @@ class XssScanner extends RequestScanner
             return true;
         }
 
-        foreach($gp as $parameter) {
+        foreach ($gp as $parameter) {
             if (\is_array($parameter)) {
                 $this->scanGP($parameter, $loop - 1);
-            } elseif(!XssUtility::scanString((string)$parameter)) {
+            } elseif (!XssUtility::scanString((string) $parameter)) {
                 return false;
             }
         }
