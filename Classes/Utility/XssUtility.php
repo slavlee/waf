@@ -12,7 +12,6 @@ namespace Slavlee\Waf\Utility;
  *
  * (c) 2024 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
-
 class XssUtility
 {
     /**

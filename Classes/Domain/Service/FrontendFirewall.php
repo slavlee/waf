@@ -4,15 +4,6 @@ declare(strict_types=1);
 
 namespace Slavlee\Waf\Domain\Service;
 
-/**
- * This file is part of the "waf" Extension for TYPO3 CMS.
- *
- * For the full copyright and license information, please read the
- * LICENSE.txt file that was distributed with this source code.
- *
- * (c) 2024 Kevin Chileong Lee <support@slavlee.de>, Slavlee
- */
-
 use Slavlee\Waf\Scanner\XssScanner;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
@@ -21,6 +12,14 @@ use Slavlee\Waf\Exception\RequestNotAllowedException;
 use Slavlee\Waf\Scanner\SqlInjectionScanner;
 use Slavlee\Waf\Scanner\CodeExecutionScanner;
 
+/**
+ * This file is part of the "waf" Extension for TYPO3 CMS.
+ *
+ * For the full copyright and license information, please read the
+ * LICENSE.txt file that was distributed with this source code.
+ *
+ * (c) 2024 Kevin Chileong Lee <support@slavlee.de>, Slavlee
+ */
 class FrontendFirewall
 {
     /**

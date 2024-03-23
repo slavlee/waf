@@ -2,6 +2,9 @@
 
 namespace Slavlee\Waf\Tests\Unit\Utility;
 
+use Slavlee\Waf\Utility\SqlInjectionUtility;
+use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
+
 /**
  * This file is part of the "waf" Extension for TYPO3 CMS.
  *
@@ -10,10 +13,6 @@ namespace Slavlee\Waf\Tests\Unit\Utility;
  *
  * (c) 2024 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
-
-use Slavlee\Waf\Utility\SqlInjectionUtility;
-use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
-
 class SqlInjectionUtilityTest extends UnitTestCase
 {
     /**

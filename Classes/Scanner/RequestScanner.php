@@ -12,7 +12,6 @@ namespace Slavlee\Waf\Scanner;
  *
  * (c) 2024 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
-
 abstract class RequestScanner
 {
     /**
@@ -33,7 +32,7 @@ abstract class RequestScanner
      */
     public function init(array $extConf): void
     {
-        $this->depth = (int) $extConf['depth'];
+        $this->depth = (int)$extConf['depth'];
     }
 
     /**

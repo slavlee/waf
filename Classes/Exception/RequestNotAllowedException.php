@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Slavlee\Waf\Exception;
 
+use TYPO3\CMS\Core\Exception;
+
 /**
  * This file is part of the "waf" Extension for TYPO3 CMS.
  *
@@ -12,9 +14,6 @@ namespace Slavlee\Waf\Exception;
  *
  * (c) 2024 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
-
-use TYPO3\CMS\Core\Exception;
-
 class RequestNotAllowedException extends Exception
 {
 }
