@@ -13,7 +13,7 @@
         "typo3/testing-framework": "^8",
 		"typo3/coding-standards": "^0.7.1",
 		"phpunit/phpunit": "^10",
-		"friendsofphp/php-cs-fixer": "^3.47.1"
+		"friendsofphp/php-cs-fixer": "^3.52.1"
     },
     "authors": [
         {
