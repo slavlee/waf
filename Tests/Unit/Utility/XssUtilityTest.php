@@ -25,7 +25,7 @@ class XssUtilityTest extends UnitTestCase
         $stringToScan = '<script>alert("TEST");</script>';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             XssUtility::scanString($stringToScan)
         );
@@ -40,7 +40,7 @@ class XssUtilityTest extends UnitTestCase
         $stringToScan = '<script type="text/javascript">alert("TEST");</script>';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             XssUtility::scanString($stringToScan)
         );

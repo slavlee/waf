@@ -25,7 +25,7 @@ class SqlInjectionUtilityTest extends UnitTestCase
         $stringToScan = 'union select';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             SqlInjectionUtility::scanString($stringToScan)
         );
@@ -40,7 +40,7 @@ class SqlInjectionUtilityTest extends UnitTestCase
         $stringToScan = \urldecode('-1+union+select+1,2,3,4,5,6,7,8,9,10');
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             SqlInjectionUtility::scanString($stringToScan)
         );
@@ -55,7 +55,7 @@ class SqlInjectionUtilityTest extends UnitTestCase
         $stringToScan = '105 OR 1=1';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             SqlInjectionUtility::scanString($stringToScan)
         );
@@ -70,7 +70,7 @@ class SqlInjectionUtilityTest extends UnitTestCase
         $stringToScan = '105 OR "x"="x"';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             SqlInjectionUtility::scanString($stringToScan)
         );
@@ -85,7 +85,7 @@ class SqlInjectionUtilityTest extends UnitTestCase
         $stringToScan = '105 OR \'x\'=\'x\'';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             SqlInjectionUtility::scanString($stringToScan)
         );
@@ -100,7 +100,7 @@ class SqlInjectionUtilityTest extends UnitTestCase
         $stringToScan = '105 AND 1=1';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             SqlInjectionUtility::scanString($stringToScan)
         );
@@ -115,7 +115,7 @@ class SqlInjectionUtilityTest extends UnitTestCase
         $stringToScan = '105 AND "x"="x"';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             SqlInjectionUtility::scanString($stringToScan)
         );
@@ -130,7 +130,7 @@ class SqlInjectionUtilityTest extends UnitTestCase
         $stringToScan = 'database()';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             SqlInjectionUtility::scanString($stringToScan)
         );
@@ -145,7 +145,7 @@ class SqlInjectionUtilityTest extends UnitTestCase
         $stringToScan = 'INFORMATION_SCHEMA.TABLES';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             SqlInjectionUtility::scanString($stringToScan)
         );

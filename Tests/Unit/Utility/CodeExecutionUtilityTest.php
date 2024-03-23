@@ -25,7 +25,7 @@ class CodeExecutionUtilityTest extends UnitTestCase
         $stringToScan = 'base64_encode("test")';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             CodeExecutionUtility::scanString($stringToScan)
         );
@@ -40,7 +40,7 @@ class CodeExecutionUtilityTest extends UnitTestCase
         $stringToScan = 'base64_encode($test)';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             CodeExecutionUtility::scanString($stringToScan)
         );
@@ -55,7 +55,7 @@ class CodeExecutionUtilityTest extends UnitTestCase
         $stringToScan = 'md5("test")';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             CodeExecutionUtility::scanString($stringToScan)
         );
@@ -70,7 +70,7 @@ class CodeExecutionUtilityTest extends UnitTestCase
         $stringToScan = 'md5($test)';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             CodeExecutionUtility::scanString($stringToScan)
         );
@@ -85,7 +85,7 @@ class CodeExecutionUtilityTest extends UnitTestCase
         $stringToScan = 'index.php';
         $expectedResult = false;
 
-        $this->assertEquals(
+        self::assertEquals(
             $expectedResult,
             CodeExecutionUtility::scanString($stringToScan)
         );
