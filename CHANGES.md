@@ -1,3 +1,6 @@
+### Version 0.2.1
+- [WIP] Create GitHub Action to execute UnitTests
+
 ### Version 0.2.0
 - [FEATURE] Add XSS Scanner
 - [BUGFIX] IF condition for strpos needs to compare against false
