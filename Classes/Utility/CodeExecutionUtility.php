@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Slavlee\Waf\Utility;
-
 
 /**
  * This file is part of the "waf" Extension for TYPO3 CMS.
@@ -17,7 +17,7 @@ class CodeExecutionUtility
 {
     // This need to be unique words related directly to SQL queries
     // which are almost guaranteed to be not used in normal text
-    const PHP_COMMANDS = ['base64_encode', 'md5'];
+    public const PHP_COMMANDS = ['base64_encode', 'md5'];
 
     /**
      * Detect SQL injection on a string

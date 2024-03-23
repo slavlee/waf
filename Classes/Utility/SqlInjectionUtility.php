@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Slavlee\Waf\Utility;
-
 
 /**
  * This file is part of the "waf" Extension for TYPO3 CMS.
@@ -17,7 +17,7 @@ class SqlInjectionUtility
 {
     // This need to be unique words related directly to SQL queries
     // which are almost guaranteed to be not used in normal text
-    const SQL_WORDS = ['database()', 'table_schema', 'group_concat', 'information_schema'];
+    public const SQL_WORDS = ['database()', 'table_schema', 'group_concat', 'information_schema'];
 
     /**
      * Detect SQL injection on a string

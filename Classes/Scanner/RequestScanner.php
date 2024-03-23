@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Slavlee\Waf\Scanner;
-
 
 /**
  * This file is part of the "waf" Extension for TYPO3 CMS.
@@ -52,5 +52,5 @@ abstract class RequestScanner
      * @param array $gp
      * @param int $loop
      */
-    protected abstract function scanGP(array $gp, int $loop = 100): bool;
+    abstract protected function scanGP(array $gp, int $loop = 100): bool;
 }

@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Slavlee\Waf\Scanner;
-
 
 /**
  * This file is part of the "waf" Extension for TYPO3 CMS.
@@ -30,8 +30,8 @@ class CodeExecutionScanner extends RequestScanner
 
         foreach($gp as $parameter) {
             if (\is_array($parameter)) {
-                $this->scanGP($parameter, $loop-1);
-            }elseif(!CodeExecutionUtility::scanString((string)$parameter)) {
+                $this->scanGP($parameter, $loop - 1);
+            } elseif(!CodeExecutionUtility::scanString((string)$parameter)) {
                 return false;
             }
         }

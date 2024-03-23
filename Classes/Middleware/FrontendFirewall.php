@@ -24,8 +24,7 @@ class FrontendFirewall implements MiddlewareInterface
     public function __construct(
         private ResponseFactoryInterface $responseFactory,
         private readonly \Slavlee\Waf\Domain\Service\FrontendFirewall $firewall
-    )
-    {
+    ) {
 
     }
 
@@ -33,7 +32,7 @@ class FrontendFirewall implements MiddlewareInterface
     {
         try {
             $this->firewall->handle($request);
-        }catch(RequestNotAllowedException $e) {
+        } catch (RequestNotAllowedException $e) {
             $response = $this->responseFactory->createResponse()
                 ->withHeader('Status', '403');
             return $response;

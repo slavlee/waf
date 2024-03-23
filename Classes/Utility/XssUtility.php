@@ -1,8 +1,8 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Slavlee\Waf\Utility;
-
 
 /**
  * This file is part of the "waf" Extension for TYPO3 CMS.

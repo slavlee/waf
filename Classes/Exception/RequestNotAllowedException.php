@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Slavlee\Waf\Exception;
@@ -16,5 +17,4 @@ use TYPO3\CMS\Core\Exception;
 
 class RequestNotAllowedException extends Exception
 {
-
 }
