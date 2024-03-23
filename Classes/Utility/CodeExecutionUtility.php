@@ -30,13 +30,13 @@ class CodeExecutionUtility
 
         // find php commands which we dont allow
         foreach(self::PHP_COMMANDS as $command) {
-            if(\preg_match('/' . $command . '\s?\(/', $stringToScan) !== false) {
+            if(\preg_match('/' . $command . '\s?\(/', $stringToScan)) {
                 return false;
             }
         }
 
         // we also block if someone send a php filename
-        if (preg_match('/^[a-z0-9]*\.php$/', $stringToScan) !== false) {
+        if (preg_match('/^[a-z0-9]*\.php$/', $stringToScan)) {
             return false;
         }
 

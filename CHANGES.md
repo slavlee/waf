@@ -1,3 +1,10 @@
+### Version 0.2.0
+- [FEATURE] Add XSS Scanner
+- [BUGFIX] IF condition for strpos needs to compare against false
+- [REGRESSION] Revert: IF condition for preg_match needs to compare against false
+- [NOTICE] Add XssScanner Unit Tests
+- [NOTICE] Improve CodeExecutionScannerTests
+
 ### Version 0.1.3
 - [FEATURE] Add little Test Documentation
 - [FEATURE] Add a complete set for CodeExecutionUtility and SqlInjectionUtility unit tests based on 0.1.0 features

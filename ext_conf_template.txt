@@ -1,6 +1,7 @@
 # customcategory=Frontend=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_cat_frontend
 # customcategory=SqlInjectionScanner=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_cat_sqlInjectionScanner
 # customcategory=CodeExecutionScanner=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_cat_codeExecutionScanner
+# customcategory=XssScanner=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_cat_xssScanner
 
 firewall {
     frontend {
@@ -18,6 +19,11 @@ firewall {
 
     codeExecutionScanner {
         # cat=CodeExecutionScanner; type=int+; label=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_firewall_requestScanner_depth
+        depth = 100
+    }
+
+    xssScanner {
+        # cat=XssScanner; type=int+; label=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_firewall_requestScanner_depth
         depth = 100
     }
 }

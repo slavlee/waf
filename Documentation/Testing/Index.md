@@ -5,4 +5,9 @@
 typo3/testing-framework
 
 ### Commands
-dev php vendor/bin/phpunit packages/waf/Tests/
+
+#### DDEV
+ddev php vendor/bin/phpunit packages/waf/Tests/
+
+#### Unix
+./vendor/bin/phpunit ./packages/waf/Tests/

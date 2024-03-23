@@ -12,6 +12,7 @@ namespace Slavlee\Waf\Domain\Service;
  * (c) 2024 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
 
+use Slavlee\Waf\Scanner\XssScanner;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -35,7 +36,8 @@ class FrontendFirewall
     public function __construct(
         private readonly ExtensionConfiguration $extensionConfiguration,
         private readonly SqlInjectionScanner $sqlInjectionScanner,
-        private readonly CodeExecutionScanner $codeExecutionScanner
+        private readonly CodeExecutionScanner $codeExecutionScanner,
+        private readonly XssScanner $xssScanner
     ) {
         $extConf = $this->extensionConfiguration->get('waf');
 
@@ -43,6 +45,7 @@ class FrontendFirewall
             $this->extConf = $extConf['firewall']['frontend'];
             $this->sqlInjectionScanner->init($extConf['firewall']['sqlInjectionScanner']);
             $this->codeExecutionScanner->init($extConf['firewall']['codeExecutionScanner']);
+            $this->xssScanner->init($extConf['firewall']['xssScanner']);
         }
     }
 
@@ -61,7 +64,8 @@ class FrontendFirewall
 
         if (!$this->scanMethod() || !$this->scanUrlSegments()
             || !$this->sqlInjectionScanner->scanRequest()
-            || !$this->codeExecutionScanner->scanRequest()) {
+            || !$this->codeExecutionScanner->scanRequest()
+            || !$this->xssScanner->scanRequest()) {
             throw new RequestNotAllowedException('Request not allowed', time());
         }
     }

@@ -29,12 +29,12 @@ class SqlInjectionUtility
         $stringToScan = \strtolower(\trim($stringToScan));
 
         // block union select
-        if (\preg_match('/union select/', $stringToScan) !== false) {
+        if (\preg_match('/union select/', $stringToScan)) {
             return false;
         }
 
         // block something like OR 1=1
-        if (\preg_match('/(or|and)\s["\']?[a-z0-9]{1,1}["\']?=["\']?[a-z0-9]{1,1}["\']?/', $stringToScan) !== false) {
+        if (\preg_match('/(or|and)\s["\']?[a-z0-9]{1,1}["\']?=["\']?[a-z0-9]{1,1}["\']?/', $stringToScan)) {
             return false;
         }
 

@@ -19,9 +19,24 @@ namespace Slavlee\Waf\Tests\Unit\Utility;
      * @test
      * Test if Utility can detect "base64_encode" string
      */
-    public function denyBase64EncodeString()
+    public function denyBase64EncodeStaticArgumentString()
     {
-        $stringToScan = 'base64_encode';
+        $stringToScan = 'base64_encode("test")';
+        $expectedResult = false;
+
+        $this->assertEquals(
+            $expectedResult,
+            CodeExecutionUtility::scanString($stringToScan)
+        );
+    }
+
+    /**
+     * @test
+     * Test if Utility can detect "base64_encode" string
+     */
+    public function denyBase64EncodeVariableArgumentString()
+    {
+        $stringToScan = 'base64_encode($test)';
         $expectedResult = false;
 
         $this->assertEquals(
@@ -34,9 +49,24 @@ namespace Slavlee\Waf\Tests\Unit\Utility;
      * @test
      * Test if Utility can detect "md5" string
      */
-    public function denyMD5String()
+    public function denyMD5WithStaticArgumentString()
     {
-        $stringToScan = 'md5';
+        $stringToScan = 'md5("test")';
+        $expectedResult = false;
+
+        $this->assertEquals(
+            $expectedResult,
+            CodeExecutionUtility::scanString($stringToScan)
+        );
+    }
+
+    /**
+     * @test
+     * Test if Utility can detect "md5" string
+     */
+    public function denyMD5WithVariableArgumentString()
+    {
+        $stringToScan = 'md5($test)';
         $expectedResult = false;
 
         $this->assertEquals(

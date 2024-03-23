@@ -12,6 +12,9 @@
 			<trans-unit id="extconf_cat_codeExecutionScanner" resname="extconf_cat_codeExecutionScanner">
                 <source>Code Execution Scanner</source>
             </trans-unit>
+			<trans-unit id="extconf_cat_xssScanner" resname="extconf_cat_xssScanner">
+                <source>XSS Scanner</source>
+            </trans-unit>
 
             <trans-unit id="extconf_firewall_allowed_methods" resname="extconf_firewall_allowed_methods">
                 <source>Allowed methods</source>
