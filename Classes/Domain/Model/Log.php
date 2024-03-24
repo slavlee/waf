@@ -24,7 +24,7 @@ class Log extends AbstractEntity
      * @var int $channel
      */
     #[Validate([
-        'validator' => 'NotEmpty'
+        'validator' => 'NotEmpty',
     ])]
     protected string $channel = 'default';
 
@@ -32,7 +32,7 @@ class Log extends AbstractEntity
      * @var string $logData
      */
     #[Validate([
-        'validator' => 'NotEmpty'
+        'validator' => 'NotEmpty',
     ])]
     protected string $logData = '';
 

@@ -29,7 +29,7 @@ return [
                 'eval' => 'trim',
                 'default' => 'default',
                 'required' => true,
-                'max' => 120
+                'max' => 120,
             ],
         ],
         'log_data' => [
@@ -44,7 +44,7 @@ return [
             'config' => [
                 'type' => 'text',
                 'readonly' => true,
-                'max' => 255
+                'max' => 255,
             ],
         ],
     ],
