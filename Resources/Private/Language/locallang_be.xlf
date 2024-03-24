@@ -15,6 +15,9 @@
 			<trans-unit id="extconf_cat_xssScanner" resname="extconf_cat_xssScanner">
                 <source>XSS Scanner</source>
             </trans-unit>
+			<trans-unit id="extconf_cat_log" resname="extconf_cat_log">
+                <source>Log</source>
+            </trans-unit>
 
             <trans-unit id="extconf_firewall_allowed_methods" resname="extconf_firewall_allowed_methods">
                 <source>Allowed methods</source>
@@ -24,6 +27,10 @@
             </trans-unit>
 			<trans-unit id="extconf_firewall_requestScanner_depth" resname="extconf_firewall_requestScanner_depth">
                 <source>Maximum amount of request parameter to parse</source>
+            </trans-unit>
+
+			<trans-unit id="extconf_log_log_on_blocked_request" resname="extconf_log_log_on_blocked_request">
+                <source>Log, if request is blocked</source>
             </trans-unit>
         </body>
     </file>

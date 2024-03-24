@@ -1,3 +1,8 @@
+### Version 0.3.0
+- [FEATURE] Create log db table
+- [FEATURE] Enable to en/disable log in extension configuration
+- [WIP] Create a log entry, when request is denied
+
 ### Version 0.2.1
 - [FEATURE] Create GitHub Action to execute UnitTests
 - [NOTICE] Use php-cs-fixer as formatter and run it on all php files

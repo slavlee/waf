@@ -2,6 +2,7 @@
 # customcategory=SqlInjectionScanner=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_cat_sqlInjectionScanner
 # customcategory=CodeExecutionScanner=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_cat_codeExecutionScanner
 # customcategory=XssScanner=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_cat_xssScanner
+# customcategory=Log=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_cat_log
 
 firewall {
     frontend {
@@ -26,4 +27,9 @@ firewall {
         # cat=XssScanner; type=int+; label=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_firewall_requestScanner_depth
         depth = 100
     }
+}
+
+log {
+    # cat=Log; type=boolean; label=LLL:EXT:waf/Resources/Private/Language/locallang_be.xlf:extconf_log_log_on_blocked_request
+    logOnBlockedRequest = 0
 }
