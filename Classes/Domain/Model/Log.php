@@ -133,7 +133,6 @@ class Log extends AbstractEntity
     /**
      * Init Log by LogObject
      * @param LogObject $logObject
-     * @return void
      */
     public function setLogObject(LogObject $logObject): void
     {

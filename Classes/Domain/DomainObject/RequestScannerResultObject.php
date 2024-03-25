@@ -52,7 +52,7 @@ class RequestScannerResultObject extends AbstractValueObject
     {
         $vars = \get_object_vars($this);
 
-        foreach($vars as $var) {
+        foreach ($vars as $var) {
             if (!empty($this->$var)) {
                 return false;
             }

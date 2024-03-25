@@ -19,7 +19,6 @@ class RepositoryUtility
     /**
      * Disable respect storage page of given repostiroy
      * @param Repository $repository
-     * @return void
      */
     public static function disableRespectStoragePage(Repository &$repository): void
     {

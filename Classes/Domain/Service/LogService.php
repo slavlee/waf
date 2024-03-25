@@ -55,7 +55,6 @@ class LogService
      * Create a log entry, when a request was blocked
      * @param ServerRequest $request
      * @param array $blockReasons
-     * @return void
      */
     public function logIfRequestBlocked(ServerRequest $request, array $blockReasons): void
     {
