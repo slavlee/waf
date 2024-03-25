@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Slavlee\Waf\Domain\Service;
 
+use Slavlee\Waf\Domain\DomainObject\LogObject;
 use Slavlee\Waf\Domain\Model\Log;
 use Slavlee\Waf\Domain\Repository\LogRepository;
-use Slavlee\Waf\Domain\DomainObject\LogObject;
 use Slavlee\Waf\Utility\TYPO3\Persistence\RepositoryUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Http\ServerRequest;

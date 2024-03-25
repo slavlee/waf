@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Slavlee\Waf\Scanner;
+
 use Slavlee\Waf\Domain\DomainObject\RequestScannerResultObject;
 
 /**

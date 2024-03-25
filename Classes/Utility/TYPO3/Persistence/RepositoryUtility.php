@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Slavlee\Waf\Utility\TYPO3\Persistence;
+
 use TYPO3\CMS\Extbase\Persistence\Repository;
 
 /**

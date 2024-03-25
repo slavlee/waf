@@ -139,7 +139,7 @@ class Log extends AbstractEntity
     {
         $vars = \get_object_vars($this);
 
-        foreach($vars as $propertyName => $value) {
+        foreach ($vars as $propertyName => $value) {
             $this->$propertyName = $logObject->$propertyName;
         }
     }
