@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 namespace Slavlee\Waf\Scanner;
+use Slavlee\Waf\Domain\DomainObject\RequestScannerResultObject;
 
 /**
  * This file is part of the "waf" Extension for TYPO3 CMS.
@@ -26,6 +27,12 @@ abstract class RequestScanner
     protected array $gp = [];
 
     /**
+     * Save information about the scan result of the last scan
+     * @var RequestScannerResultObject
+     */
+    protected ?RequestScannerResultObject $resultObject = null;
+
+    /**
      * Init the scanner with the extension configuration
      * @param array $extConf
      */
@@ -36,10 +43,11 @@ abstract class RequestScanner
 
     /**
      * Scan current request for sql injections
-     * @retur bool
+     * @return bool
      */
     public function scanRequest(): bool
     {
+        $this->resultObject = new RequestScannerResultObject();
         $this->gp = \array_merge_recursive($_GET, $_POST);
 
         return $this->scanGP($this->gp, $this->depth);
@@ -49,6 +57,17 @@ abstract class RequestScanner
      * Scan array for sql injections
      * @param array $gp
      * @param int $loop
+     * @return bool
      */
     abstract protected function scanGP(array $gp, int $loop = 100): bool;
+
+    /**
+     * Get save information about the scan result of the last scan
+     *
+     * @return RequestScannerResultObject
+     */
+    public function getResultObject()
+    {
+        return $this->resultObject;
+    }
 }

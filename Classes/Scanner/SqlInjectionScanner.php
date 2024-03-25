@@ -20,6 +20,7 @@ class SqlInjectionScanner extends RequestScanner
      * Scan array for sql injections
      * @param array $gp
      * @param int $loop
+     * @return bool
      */
     protected function scanGP(array $gp, int $loop = 100): bool
     {

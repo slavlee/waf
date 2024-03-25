@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Slavlee\Waf\Domain\Model;
 
+use Slavlee\Waf\Domain\DomainObject\LogObject;
 use TYPO3\CMS\Extbase\Annotation\Validate;
 use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
@@ -127,5 +128,19 @@ class Log extends AbstractEntity
         $this->message = $message;
 
         return $this;
+    }
+
+    /**
+     * Init Log by LogObject
+     * @param LogObject $logObject
+     * @return void
+     */
+    public function setLogObject(LogObject $logObject): void
+    {
+        $vars = \get_object_vars($this);
+
+        foreach($vars as $propertyName => $value) {
+            $this->$propertyName = $logObject->$propertyName;
+        }
     }
 }

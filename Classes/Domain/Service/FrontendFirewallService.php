@@ -6,10 +6,13 @@ namespace Slavlee\Waf\Domain\Service;
 
 use Slavlee\Waf\Exception\RequestNotAllowedException;
 use Slavlee\Waf\Scanner\CodeExecutionScanner;
+use Slavlee\Waf\Scanner\RequestScanner;
 use Slavlee\Waf\Scanner\SqlInjectionScanner;
 use Slavlee\Waf\Scanner\XssScanner;
+use Slavlee\Waf\Utility\TYPO3\Persistence\PersistenceUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Utility\ArrayUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -20,7 +23,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  *
  * (c) 2024 Kevin Chileong Lee <support@slavlee.de>, Slavlee
  */
-class FrontendFirewall
+class FrontendFirewallService
 {
     /**
      * ExtensionConfiguration
@@ -33,11 +36,18 @@ class FrontendFirewall
      */
     private ServerRequest $request;
 
+    /**
+     * Stack of keywords, why last request was blocked
+     * @var array
+     */
+    private array $blockReasons = [];
+
     public function __construct(
         private readonly ExtensionConfiguration $extensionConfiguration,
         private readonly SqlInjectionScanner $sqlInjectionScanner,
         private readonly CodeExecutionScanner $codeExecutionScanner,
-        private readonly XssScanner $xssScanner
+        private readonly XssScanner $xssScanner,
+        private readonly LogService $logService
     ) {
         $extConf = $this->extensionConfiguration->get('waf');
 
@@ -55,6 +65,7 @@ class FrontendFirewall
     public function handle(ServerRequest $request): void
     {
         $this->request = $request;
+        $this->reset();
 
         if (empty($this->extConf)) {
             return;
@@ -66,8 +77,30 @@ class FrontendFirewall
             || !$this->codeExecutionScanner->scanRequest()
             || !$this->xssScanner->scanRequest()
         ) {
+            $this->collectBlockReasons();
+            $this->logService->logIfRequestBlocked($request, $this->blockReasons);
+            PersistenceUtility::persistAll();
+
             throw new RequestNotAllowedException('Request not allowed', time());
         }
+    }
+
+    /**
+     * Reset the Firewall Service
+     */
+    public function reset(): void
+    {
+        $this->blockReasons = [];
+    }
+
+    /**
+     * Collect all block reasons
+     */
+    protected function collectBlockReasons()
+    {
+        $this->mergeBlockReasons($this->sqlInjectionScanner);
+        $this->mergeBlockReasons($this->codeExecutionScanner);
+        $this->mergeBlockReasons($this->xssScanner);
     }
 
     /**
@@ -76,7 +109,16 @@ class FrontendFirewall
      */
     private function scanMethod(): bool
     {
-        return in_array($this->request->getMethod(), GeneralUtility::trimExplode(',', $this->extConf['allowedMethods'], true));
+        $validRequest = in_array($this->request->getMethod(), GeneralUtility::trimExplode(',', $this->extConf['allowedMethods'], true));
+
+        if (!$validRequest) {
+            $this->blockReasons[] = [
+                'func' => 'scanMethod',
+                'reason' => 'method not allowed',
+            ];
+        }
+
+        return $validRequest;
     }
 
     /**
@@ -90,10 +132,29 @@ class FrontendFirewall
 
         foreach ($invalidSegments as $invalidSegment) {
             if (\preg_match('/^\/' . $invalidSegment . '(\/.*)?$/', $path)) {
+                $this->blockReasons[] = [
+                    'func' => 'scanUrlSegments',
+                    'reason' => $path,
+                ];
                 return false;
             }
         }
 
         return true;
+    }
+
+    /**
+     * Merge incoming block reasons from RequestScannerResultObject
+     * with class $this->blockReasons
+     * @param RequestScanner $requestScanner
+     */
+    private function mergeBlockReasons(RequestScanner $requestScanner): void
+    {
+        $resultObject = $requestScanner->getResultObject();
+
+        if ($resultObject && !$resultObject->isEmpty()) {
+            $resultObjectBlockReasons = $resultObject->getBlockReasons();
+            ArrayUtility::mergeRecursiveWithOverrule($this->blockReasons, $resultObjectBlockReasons);
+        }
     }
 }

@@ -1,3 +1,7 @@
+### Version 0.4.0
+- [IMPORTANT] Rename FrontendFirewall to FrontendFirewallService
+- [FEATURE] Create a log entry, when request is denied
+
 ### Version 0.3.0
 - [FEATURE] Create log db table
 - [FEATURE] Enable to en/disable log in extension configuration
