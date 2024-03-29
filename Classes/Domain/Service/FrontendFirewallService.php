@@ -15,7 +15,6 @@ use Slavlee\Waf\Utility\TYPO3\Persistence\PersistenceUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Utility\ArrayUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This file is part of the "waf" Extension for TYPO3 CMS.
