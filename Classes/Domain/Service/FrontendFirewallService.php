@@ -6,8 +6,10 @@ namespace Slavlee\Waf\Domain\Service;
 
 use Slavlee\Waf\Exception\RequestNotAllowedException;
 use Slavlee\Waf\Scanner\CodeExecutionScanner;
+use Slavlee\Waf\Scanner\MethodScanner;
 use Slavlee\Waf\Scanner\RequestScanner;
 use Slavlee\Waf\Scanner\SqlInjectionScanner;
+use Slavlee\Waf\Scanner\UrlSegmentsScanner;
 use Slavlee\Waf\Scanner\XssScanner;
 use Slavlee\Waf\Utility\TYPO3\Persistence\PersistenceUtility;
 use TYPO3\CMS\Core\Configuration\ExtensionConfiguration;
@@ -47,7 +49,9 @@ class FrontendFirewallService
         private readonly SqlInjectionScanner $sqlInjectionScanner,
         private readonly CodeExecutionScanner $codeExecutionScanner,
         private readonly XssScanner $xssScanner,
-        private readonly LogService $logService
+        private readonly LogService $logService,
+        private readonly MethodScanner $methodScanner,
+        private readonly UrlSegmentsScanner $urlSegmentsScanner
     ) {
         $this->extConf = $this->extensionConfiguration->get('waf');
 
@@ -55,6 +59,8 @@ class FrontendFirewallService
             $this->sqlInjectionScanner->init($this->extConf['firewall']['sqlInjectionScanner']);
             $this->codeExecutionScanner->init($this->extConf['firewall']['codeExecutionScanner']);
             $this->xssScanner->init($this->extConf['firewall']['xssScanner']);
+            $this->methodScanner->init($this->extConf);
+            $this->urlSegmentsScanner->init($this->extConf);
         }
     }
 
@@ -64,6 +70,8 @@ class FrontendFirewallService
     public function handle(ServerRequest $request): void
     {
         $this->request = $request;
+        $this->methodScanner->setRequest($request);
+        $this->urlSegmentsScanner->setRequest($request);
         $this->reset();
 
         if (empty($this->extConf)) {
@@ -71,7 +79,8 @@ class FrontendFirewallService
         }
 
         if (
-            !$this->scanMethod() || !$this->scanUrlSegments()
+            !$this->methodScanner->scanRequest()
+            || !$this->urlSegmentsScanner->scanRequest()
             || !$this->sqlInjectionScanner->scanRequest()
             || !$this->codeExecutionScanner->scanRequest()
             || !$this->xssScanner->scanRequest()
@@ -102,46 +111,8 @@ class FrontendFirewallService
         $this->mergeBlockReasons($this->sqlInjectionScanner);
         $this->mergeBlockReasons($this->codeExecutionScanner);
         $this->mergeBlockReasons($this->xssScanner);
-    }
-
-    /**
-     * Check if HTTP method is allowed
-     * @return bool
-     */
-    private function scanMethod(): bool
-    {
-        $validRequest = in_array($this->request->getMethod(), GeneralUtility::trimExplode(',', $this->extConf['firewall']['frontend']['allowedMethods'], true));
-
-        if (!$validRequest) {
-            $this->blockReasons[] = [
-                'func' => 'scanMethod',
-                'reason' => 'method not allowed',
-            ];
-        }
-
-        return $validRequest;
-    }
-
-    /**
-     * Check if url path is allowed
-     * @return bool
-     */
-    private function scanUrlSegments(): bool
-    {
-        $path = $this->request->getUri()->getPath();
-        $invalidSegments = GeneralUtility::trimExplode(',', $this->extConf['firewall']['frontend']['disallowedFirstUrlSegments']);
-
-        foreach ($invalidSegments as $invalidSegment) {
-            if (\preg_match('/^\/' . $invalidSegment . '(\/.*)?$/', $path)) {
-                $this->blockReasons[] = [
-                    'func' => 'scanUrlSegments',
-                    'reason' => $path,
-                ];
-                return false;
-            }
-        }
-
-        return true;
+        $this->mergeBlockReasons($this->methodScanner);
+        $this->mergeBlockReasons($this->urlSegmentsScanner);
     }
 
     /**

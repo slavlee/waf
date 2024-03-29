@@ -45,6 +45,18 @@ class RequestScannerResultObject extends AbstractValueObject
     }
 
     /**
+     * Add a new block reason
+     * @param array $blockReason
+     * @return RequestScannerResultObject
+     */
+    public function addBlockReason(array $blockReason): RequestScannerResultObject
+    {
+        $this->blockReasons[] = $blockReason;
+
+        return $this;
+    }
+
+    /**
      * Return true if object is empty
      * @return bool
      */
@@ -52,8 +64,8 @@ class RequestScannerResultObject extends AbstractValueObject
     {
         $vars = \get_object_vars($this);
 
-        foreach ($vars as $var) {
-            if (!empty($this->$var)) {
+        foreach ($vars as $propertyName => $value) {
+            if (!empty($value)) {
                 return false;
             }
         }

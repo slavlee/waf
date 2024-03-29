@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Slavlee\Waf\Scanner;
 
 use Slavlee\Waf\Domain\DomainObject\RequestScannerResultObject;
+use TYPO3\CMS\Core\Http\ServerRequest;
 
 /**
  * This file is part of the "waf" Extension for TYPO3 CMS.
@@ -34,12 +35,27 @@ abstract class RequestScanner
     protected ?RequestScannerResultObject $resultObject = null;
 
     /**
+     * Current ServerRequest
+     * @var ServerRequest
+     */
+    protected ?ServerRequest $request = null;
+
+    /**
+     * ExtensionConfiguration
+     * @var array
+     */
+    protected array $extConf = [];
+
+    /**
      * Init the scanner with the extension configuration
      * @param array $extConf
      */
     public function init(array $extConf): void
     {
-        $this->depth = (int)$extConf['depth'];
+        if (\array_key_exists('depth', $extConf)) {
+            $this->depth = (int)$extConf['depth'];
+        }
+        $this->extConf = $extConf;
     }
 
     /**
@@ -70,5 +86,29 @@ abstract class RequestScanner
     public function getResultObject()
     {
         return $this->resultObject;
+    }
+
+    /**
+     * Get current ServerRequest
+     *
+     * @return  ServerRequest
+     */
+    public function getRequest(): ServerRequest
+    {
+        return $this->request;
+    }
+
+    /**
+     * Set current ServerRequest
+     *
+     * @param  ServerRequest  $request  Current ServerRequest
+     *
+     * @return  self
+     */
+    public function setRequest(ServerRequest $request): RequestScanner
+    {
+        $this->request = $request;
+
+        return $this;
     }
 }

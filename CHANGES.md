@@ -1,3 +1,9 @@
+### Version 0.5.0
+- [WIP] DDoS Protection
+- [WIP] Refactor FrontendFirewall to Queue up all scanners and process the queue instead of calling them manually
+- [IMPORTANT] Moved MethodScan into own MethodScanner class
+- [IMPORTANT] Moved UrlSegmentScan into own UrlSegmentScanner class
+
 ### Version 0.4.1
 - [BUGFIX] Logentry only created if logOnBlockedRequest on extension configuration is enabled
 
