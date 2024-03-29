@@ -1,3 +1,6 @@
+### Version 0.4.1
+- [BUGFIX] Logentry only created if logOnBlockedRequest on extension configuration is enabled
+
 ### Version 0.4.0
 - [IMPORTANT] Rename FrontendFirewall to FrontendFirewallService
 - [FEATURE] Create a log entry, when request is denied

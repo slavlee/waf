@@ -49,13 +49,12 @@ class FrontendFirewallService
         private readonly XssScanner $xssScanner,
         private readonly LogService $logService
     ) {
-        $extConf = $this->extensionConfiguration->get('waf');
+        $this->extConf = $this->extensionConfiguration->get('waf');
 
-        if (\is_array($extConf) && \array_key_exists('firewall', $extConf)) {
-            $this->extConf = $extConf['firewall']['frontend'];
-            $this->sqlInjectionScanner->init($extConf['firewall']['sqlInjectionScanner']);
-            $this->codeExecutionScanner->init($extConf['firewall']['codeExecutionScanner']);
-            $this->xssScanner->init($extConf['firewall']['xssScanner']);
+        if (\is_array($this->extConf) && \array_key_exists('firewall', $this->extConf)) {
+            $this->sqlInjectionScanner->init($this->extConf['firewall']['sqlInjectionScanner']);
+            $this->codeExecutionScanner->init($this->extConf['firewall']['codeExecutionScanner']);
+            $this->xssScanner->init($this->extConf['firewall']['xssScanner']);
         }
     }
 
@@ -77,9 +76,11 @@ class FrontendFirewallService
             || !$this->codeExecutionScanner->scanRequest()
             || !$this->xssScanner->scanRequest()
         ) {
-            $this->collectBlockReasons();
-            $this->logService->logIfRequestBlocked($request, $this->blockReasons);
-            PersistenceUtility::persistAll();
+            if ($this->extConf['log']['logOnBlockedRequest']) {
+                $this->collectBlockReasons();
+                $this->logService->logIfRequestBlocked($request, $this->blockReasons);
+                PersistenceUtility::persistAll();
+            }
 
             throw new RequestNotAllowedException('Request not allowed', time());
         }
@@ -109,7 +110,7 @@ class FrontendFirewallService
      */
     private function scanMethod(): bool
     {
-        $validRequest = in_array($this->request->getMethod(), GeneralUtility::trimExplode(',', $this->extConf['allowedMethods'], true));
+        $validRequest = in_array($this->request->getMethod(), GeneralUtility::trimExplode(',', $this->extConf['firewall']['frontend']['allowedMethods'], true));
 
         if (!$validRequest) {
             $this->blockReasons[] = [
@@ -128,7 +129,7 @@ class FrontendFirewallService
     private function scanUrlSegments(): bool
     {
         $path = $this->request->getUri()->getPath();
-        $invalidSegments = GeneralUtility::trimExplode(',', $this->extConf['disallowedFirstUrlSegments']);
+        $invalidSegments = GeneralUtility::trimExplode(',', $this->extConf['firewall']['frontend']['disallowedFirstUrlSegments']);
 
         foreach ($invalidSegments as $invalidSegment) {
             if (\preg_match('/^\/' . $invalidSegment . '(\/.*)?$/', $path)) {
