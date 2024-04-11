@@ -32,12 +32,13 @@ class MethodScanner extends RequestScanner
      */
     private function scanMethod(): bool
     {
-        $validRequest = in_array($this->request->getMethod(), GeneralUtility::trimExplode(',', $this->extConf['firewall']['frontend']['allowedMethods'], true));
+        $httpMethod = $this->request->getMethod();
+        $validRequest = in_array($httpMethod, GeneralUtility::trimExplode(',', $this->extConf['firewall']['frontend']['allowedMethods'], true));
 
         if (!$validRequest) {
             $this->resultObject->addBlockReason([
                 'func' => 'scanMethod',
-                'reason' => 'method not allowed',
+                'reason' => 'method: ' . $httpMethod . ' not allowed',
             ]);
         }
 

@@ -31,6 +31,10 @@ class CodeExecutionScanner extends RequestScanner
             if (\is_array($parameter)) {
                 $this->scanGP($parameter, $loop - 1);
             } elseif (!CodeExecutionUtility::scanString((string)$parameter)) {
+                $this->resultObject->addBlockReason([
+                    'func' => 'scanGP',
+                    'reason' => 'parameter: ' . (string)$parameter .' not allowed',
+                ]);
                 return false;
             }
         }

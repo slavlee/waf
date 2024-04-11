@@ -1,3 +1,6 @@
+### Version 0.6.0
+- [FEATURE] Add Block Reasons for following Scanner: CodeExecution, Method, Sqlinjecton, Xss
+
 ### Version 0.5.0
 - [WIP] DDoS Protection
 - [WIP] Refactor FrontendFirewall to Queue up all scanners and process the queue instead of calling them manually

@@ -31,6 +31,10 @@ class XssScanner extends RequestScanner
             if (\is_array($parameter)) {
                 $this->scanGP($parameter, $loop - 1);
             } elseif (!XssUtility::scanString((string)$parameter)) {
+                $this->resultObject->addBlockReason([
+                    'func' => 'scanGP',
+                    'reason' => 'parameter: ' . (string)$parameter .' not allowed',
+                ]);
                 return false;
             }
         }

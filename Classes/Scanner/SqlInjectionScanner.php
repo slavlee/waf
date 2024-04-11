@@ -32,6 +32,11 @@ class SqlInjectionScanner extends RequestScanner
             if (\is_array($parameter)) {
                 $this->scanGP($parameter, $loop - 1);
             } elseif (!SqlInjectionUtility::scanString((string)$parameter)) {
+
+                $this->resultObject->addBlockReason([
+                    'func' => 'scanGP',
+                    'reason' => 'parameter: ' . (string)$parameter .' not allowed',
+                ]);
                 return false;
             }
         }

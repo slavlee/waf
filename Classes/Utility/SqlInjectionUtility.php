@@ -28,7 +28,7 @@ class SqlInjectionUtility
         $stringToScan = \strtolower(\trim($stringToScan));
 
         // block union select
-        if (\preg_match('/union select/', $stringToScan)) {
+        if (\preg_match('/union[\s+]select/', $stringToScan)) {
             return false;
         }
 
